@@ -1,4 +1,5 @@
-module Hakyll.Web.Elm (elmCompiler)
+{-# LANGUAGE OverloadedStrings #-}
+module Hakyll.Web.Elm
        where
 
 import Data.Monoid         ((<>), mempty)
@@ -6,6 +7,8 @@ import Data.String         (fromString)
 import Data.Traversable    (traverse)
 import Control.Applicative ((<$>))
 import Control.Monad.Error (throwError)
+
+--import Debug.Trace
 
 import qualified Language.Elm      as Elm
 import Hakyll
@@ -23,16 +26,17 @@ elmCompiler = do
 
 compileModule :: String -> Either String String
 compileModule bod = html modul <$> js
-  where modul = maybe "Elm.Main" id . Elm.moduleName $ bod
+  where modul = maybe "Main" id . Elm.moduleName $ bod
         js    = Elm.compile bod
 
 html :: String -- ^ Module Name
         -> String -- ^ Generated Javascript
         -> String -- ^ HTML & JS
-html modul js = renderHtml $ node <> instantiate
+html modul genJS = renderHtml $ node <> instantiate
   where node = H.div ! Attr.id (fromString modul) $ mempty
-        instantiate = H.script . H.toHtml . unlines $
-                      [ js
-                      , "var div = document.getElement('" <> modul <> "', div);"
-                      , "Elm.embed(" <> modul <> ", div);"
+        instantiate = (H.script ! Attr.type_ "text/javascript")
+                      . H.toHtml . unlines $
+                      [ genJS
+                      , "var div = document.getElementById('" <> modul <> "', div);"
+                      , "Elm.embed(Elm." <> modul <> ", div);"
                       ]
