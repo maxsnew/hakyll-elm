@@ -22,7 +22,7 @@ cabal-version:       >=1.10
 source-repository head
   type:     git
   location: https://github.com/maxsnew/hakyll-elm
-  branch:   dev
+  branch:   develop
 
 library
   -- Modules exported by the library.
