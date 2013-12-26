@@ -16,7 +16,6 @@ author:              Max New
 maintainer:          maxsnew@gmail.com
 category:            Web
 build-type:          Simple
-extra-source-files:  README.md
 cabal-version:       >=1.10
 
 source-repository head
