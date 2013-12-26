@@ -1,6 +1,14 @@
 name:                hakyll-elm
 version:             0.1.0.0
-synopsis:            Wrappers for using Elm to make pages for a Hakyll site
+synopsis:            Hakyll wrapper for the Elm compiler.
+description:         A wrapper for compiling
+                     Elm (<http://elm-lang.org>) programs to
+                     html/javascript in a Hakyll project.
+                     .
+                     Currently supports single-module programs that
+                     only import from an Elm runtime that's manually
+                     included.
+
 homepage:            https://github.com/maxsnew/hakyll-elm
 license:             BSD3
 license-file:        LICENSE
