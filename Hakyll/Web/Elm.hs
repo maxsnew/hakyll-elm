@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Hakyll.Web.Elm
+module Hakyll.Web.Elm (elmStandaloneCompiler)
        where
 
 import Data.Monoid         ((<>), mempty)
@@ -7,8 +7,6 @@ import Data.String         (fromString)
 import Data.Traversable    (traverse)
 import Control.Applicative ((<$>))
 import Control.Monad.Error (throwError)
-
---import Debug.Trace
 
 import qualified Language.Elm      as Elm
 import Hakyll
@@ -18,8 +16,14 @@ import Text.Blaze.Html.Renderer.String (renderHtml)
 import qualified Text.Blaze.Html5  as H
 import qualified Text.Blaze.Html5.Attributes as Attr
 
-elmCompiler :: Compiler (Item String)
-elmCompiler = do
+{-| Compiles an elm file to a div and inline Javascript.
+    
+    Expects elm-runtime.js to have already been loaded on the page.
+
+    Works for files that only import from modules in the elm runtime.
+-}
+elmStandaloneCompiler :: Compiler (Item String)
+elmStandaloneCompiler = do
   it <- getResourceBody
   case traverse compileModule it of
     Left  err -> throwError [err]
