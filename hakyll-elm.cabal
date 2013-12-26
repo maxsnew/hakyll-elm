@@ -1,5 +1,5 @@
 name:                hakyll-elm
-version:             0.1.0.0
+version:             0.1
 synopsis:            Hakyll wrapper for the Elm compiler.
 description:         A wrapper for compiling
                      Elm (<http://elm-lang.org>) programs to
