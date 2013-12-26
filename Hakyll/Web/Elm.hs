@@ -12,6 +12,7 @@ import Control.Monad.Error (throwError)
 
 import qualified Language.Elm      as Elm
 import Hakyll
+import Text.Blaze                  (preEscapedToMarkup)
 import Text.Blaze.Html5            ((!))
 import Text.Blaze.Html.Renderer.String (renderHtml)
 import qualified Text.Blaze.Html5  as H
@@ -35,7 +36,7 @@ html :: String -- ^ Module Name
 html modul genJS = renderHtml $ node <> instantiate
   where node = H.div ! Attr.id (fromString modul) $ mempty
         instantiate = (H.script ! Attr.type_ "text/javascript")
-                      . H.toHtml . unlines $
+                      . preEscapedToMarkup . unlines $
                       [ genJS
                       , "var div = document.getElementById('" <> modul <> "', div);"
                       , "Elm.embed(Elm." <> modul <> ", div);"
