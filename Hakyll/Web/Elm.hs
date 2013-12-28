@@ -23,11 +23,13 @@ import qualified Text.Blaze.Html5.Attributes as Attr
     Works for files that only import from modules in the elm runtime.
 -}
 elmStandaloneCompiler :: Compiler (Item String)
-elmStandaloneCompiler = do
+elmStandaloneCompiler = cached cacheName $ do
   it <- getResourceBody
   case traverse compileModule it of
     Left  err -> throwError [err]
     Right out -> return out
+
+  where cacheName = "Hakyll.Web.Elm.elmStandaloneCompiler"
 
 compileModule :: String -> Either String String
 compileModule bod = html modul <$> js
