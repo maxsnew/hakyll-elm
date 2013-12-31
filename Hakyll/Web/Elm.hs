@@ -8,12 +8,13 @@ import Data.Traversable    (traverse)
 import Control.Applicative ((<$>))
 import Control.Monad.Error (throwError)
 
-import qualified Language.Elm      as Elm
 import Hakyll
-import Text.Blaze                  (preEscapedToMarkup)
-import Text.Blaze.Html5            ((!))
+import Text.Blaze                      (preEscapedToMarkup)
+import Text.Blaze.Html5                ((!))
 import Text.Blaze.Html.Renderer.String (renderHtml)
-import qualified Text.Blaze.Html5  as H
+
+import qualified Elm.Internal.Utils          as Elm
+import qualified Text.Blaze.Html5            as H
 import qualified Text.Blaze.Html5.Attributes as Attr
 
 {-| Compiles an elm file to a div and inline Javascript.

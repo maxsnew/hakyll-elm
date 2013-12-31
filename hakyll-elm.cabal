@@ -1,5 +1,5 @@
 name:                hakyll-elm
-version:             0.1
+version:             0.2
 synopsis:            Hakyll wrapper for the Elm compiler.
 description:         A wrapper for compiling
                      Elm (<http://elm-lang.org>) programs to
@@ -28,17 +28,17 @@ source-repository this
   type:     git
   location: git://github.com/maxsnew/hakyll-elm.git
   branch:   master
-  tag:      0.1.0
+  tag:      v0.2
 
 library
   -- Modules exported by the library.
   exposed-modules:     Hakyll.Web.Elm
-  build-depends:       base         >= 4.6 && < 4.7,
-                       hakyll       >= 4.0 && < 4.5,
-                       Elm          >= 0.9 && < 0.11,
-                       mtl          >= 1.0 && < 3.0,
-                       blaze-html   >= 0.4 && < 0.7,
-                       blaze-markup >= 0.5 && < 0.6
+  build-depends:       base         >= 4.6    && < 4.7,
+                       hakyll       >= 4.0    && < 4.5,
+                       Elm          >= 0.10.1 && < 0.11,
+                       mtl          >= 1.0    && < 3.0,
+                       blaze-html   >= 0.4    && < 0.7,
+                       blaze-markup >= 0.5    && < 0.6
   -- Base language which the package is written in.
   default-language:    Haskell2010
   ghc-options:         -Wall
