@@ -1,5 +1,5 @@
 name:                hakyll-elm
-version:             0.2
+version:             0.2.1
 synopsis:            Hakyll wrapper for the Elm compiler.
 description:         A wrapper for compiling
                      Elm (<http://elm-lang.org>) programs to
@@ -28,7 +28,7 @@ source-repository this
   type:     git
   location: git://github.com/maxsnew/hakyll-elm.git
   branch:   master
-  tag:      v0.2
+  tag:      v0.2.1
 
 library
   -- Modules exported by the library.
