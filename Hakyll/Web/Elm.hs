@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Hakyll.Web.Elm (elmStandaloneCompiler)
+module Hakyll.Web.Elm (elmStandaloneCompiler, elmRuntime)
        where
 
 import Data.Monoid         ((<>), mempty)
@@ -13,6 +13,7 @@ import Text.Blaze                      (preEscapedToMarkup)
 import Text.Blaze.Html5                ((!))
 import Text.Blaze.Html.Renderer.String (renderHtml)
 
+import qualified Elm.Internal.Paths          as Path
 import qualified Elm.Internal.Utils          as Elm
 import qualified Text.Blaze.Html5            as H
 import qualified Text.Blaze.Html5.Attributes as Attr
@@ -31,6 +32,10 @@ elmStandaloneCompiler = cached cacheName $ do
     Right out -> return out
 
   where cacheName = "Hakyll.Web.Elm.elmStandaloneCompiler"
+
+elmRuntime :: String
+elmRuntime = Path.runtime
+
 
 compileModule :: String -> Either String String
 compileModule bod = html modul <$> js
